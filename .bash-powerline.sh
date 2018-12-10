@@ -6,14 +6,14 @@
 __powerline() {
     # Colorscheme
     readonly RESET='\[\033[m\]'
-    readonly COLOR_CWD='\[\033[0;36m\]' # cyan
+    readonly COLOR_CWD='\[\033[1;36m\]' # cyan
     readonly COLOR_GIT='\[\033[0;33m\]' # yellow
     readonly COLOR_SUCCESS='\[\033[0;32m\]' # green
     readonly COLOR_FAILURE='\[\033[0;31m\]' # red
     # add new colors 
-    readonly COLOR_TIME='\[\033[0;94m\]' # red
-    readonly COLOR_USER='\[\033[4;35m\]' # purple
-    readonly COLOR_HOST='\[\033[0;35m\]' # blah
+    readonly COLOR_TIME='\[\033[0;31m\]' # red
+    readonly COLOR_USER='\[\033[1;35m\]' # purple
+    readonly COLOR_HOST='\[\033[1;35m\]' # blah
 
     readonly SYMBOL_GIT_BRANCH='⑂'
     readonly SYMBOL_GIT_MODIFIED='*'
@@ -23,10 +23,8 @@ __powerline() {
     if [[ -z "$PS_SYMBOL" ]]; then
       case "$(uname)" in
           #Darwin)   PS_SYMBOL='';;
-          #Darwin)   PS_SYMBOL='⎇ ';;
-          Darwin)   PS_SYMBOL='♖';;
-          #Darwin)   PS_SYMBOL='👉👌💦💦';;
-          Linux)    PS_SYMBOL='$';;
+          Darwin)   PS_SYMBOL='⚩';;
+          Linux)    PS_SYMBOL='>>';;
           *)        PS_SYMBOL='%';;
       esac
     fi
@@ -35,7 +33,7 @@ __powerline() {
       case "$(uname)" in
           #Darwin)   PS_SYMBOL='';;
           Darwin)   PS_ERROR_SYMBOL='⚡︎';;
-          Linux)    PS_ERROR_SYMBOL='$';;
+          Linux)    PS_ERROR_SYMBOL='>>';;
           *)        PS_ERROR_SYMBOL='%';;
       esac
     fi
@@ -101,28 +99,12 @@ __powerline() {
         
 
         # Caleb's Custamization here!!
-        PS_LINE=`printf .. '- %.0s' {1..200}`
+        PS_LINE=`printf -- '- %.0s' {1..200}`
         PS_FILL=${PS_LINE:0:$COLUMNS}
         PS_INFO="$COLOR_USER\u$RESET@$COLOR_HOST\h$RESET"
-        
-        if [ ! -z "$CONDA_DEFAULT_ENV" ]; then
-            virenv="(${CONDA_DEFAULT_ENV##*/})"
-            PS_INFO="$virenv$PS_INFO"
-        else
-            PS_INFO=$PS_INFO
-        fi
-
-        if [ ! -z "$VIRTUAL_ENV" ]; then
-            virenv="(${VIRTUAL_ENV##*/})"
-            PS_INFO="$virenv$PS_INFO"
-        else
-            PS_INFO=$PS_INFO
-        fi
-
-        RED="\[\033[0;91m\]"
-        PS_TIME="\[\033[\$((COLUMNS-10))G\] $RED[\t]"
-        PS1="${PS_FILL}\[\033[0G\]$PS_INFO:$cwd$git$PS_TIME\n${RESET}$symbol"
-
+        RED="\[\033[0;35m\]"
+        PS_TIME="\[\033[\$((COLUMNS-10))G\] $COLOR_TIME[\t]"
+        PS1="\${PS_FILL}\[\033[0G\]$PS_INFO:$cwd$git$PS_TIME\n${RESET}$symbol"
     }
 
     PROMPT_COMMAND="ps1${PROMPT_COMMAND:+; $PROMPT_COMMAND}"

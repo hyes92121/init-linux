@@ -19,5 +19,5 @@ export PATH=${PATH}:/usr/sbin
 export LSCOLORS="ExfxcxdxBxegecabagacad"
 
 # added by Miniconda3 installer
-export PATH="/Users/caspian/miniconda3/bin:$PATH"
-. /Users/caspian/miniconda3/etc/profile.d/conda.sh
+export PATH="/Users/$(whoami)/miniconda3/bin:$PATH"
+#. /Users/caspian/miniconda3/etc/profile.d/conda.sh

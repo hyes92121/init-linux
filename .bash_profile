@@ -20,4 +20,4 @@ export LSCOLORS="ExfxcxdxBxegecabagacad"
 
 # added by Miniconda3 installer
 export PATH="/Users/$(whoami)/miniconda3/bin:$PATH"
-#. /Users/caspian/miniconda3/etc/profile.d/conda.sh
+. /Users/$(whoami)/miniconda3/etc/profile.d/conda.sh

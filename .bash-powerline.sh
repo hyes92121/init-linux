@@ -12,8 +12,8 @@ __powerline() {
     readonly COLOR_FAILURE='\[\033[0;31m\]' # red
     # add new colors 
     readonly COLOR_TIME='\[\033[0;94m\]' # red
-    readonly COLOR_USER='\[\033[4;95m\]' # purple
-    readonly COLOR_HOST='\[\033[0;95m\]' # blah
+    readonly COLOR_USER='\[\033[4;35m\]' # purple
+    readonly COLOR_HOST='\[\033[0;35m\]' # blah
 
     readonly SYMBOL_GIT_BRANCH='⑂'
     readonly SYMBOL_GIT_MODIFIED='*'

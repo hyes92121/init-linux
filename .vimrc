@@ -27,20 +27,6 @@ hi CursorLine   ctermbg=none
 " Highlight cursorline No. color
 hi CursorLineNr ctermfg=white
 
-" setup file for YCM
-autocmd CompleteDone * pclose
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-let g:ycm_show_diagnostics_ui = 0
-
-" Setup code for syntastics
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 " Setup code for Indentline
 set conceallevel=1

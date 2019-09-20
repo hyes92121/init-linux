@@ -26,7 +26,8 @@ fi
 # move files to home directory
 mv init-linux/.bash* .
 mv init-linux/.vim* .
-cd .vim/bundle/
+cd .vim/
+mkdir bundle; cd bundle
 git clone https://github.com/nanotech/jellybeans.vim
 git clone https://github.com/vim-airline/vim-airline
 cd ../..

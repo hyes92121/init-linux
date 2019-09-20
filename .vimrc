@@ -27,43 +27,6 @@ hi CursorLine   ctermbg=none
 " Highlight cursorline No. color
 hi CursorLineNr ctermfg=white
 
-
-" Setup code for Indentline
-set conceallevel=1
-let g:indentLine_setColors=239
-let g:indentLine_char='--'
-let g:indentLine_concealcursor='inc'
-let g:indentLine_conceallevel=2
-
-
-" Configs for NerdTree
-autocmd vimenter * NERDTree
-map <C-n> :NERDTreeToggle<CR>
-" close vim if only window left is nerdtree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeWinSize=15
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-
-
-" Mappings
-let mapleader=","
-set showcmd
-
-" Tab navigation 
-nnoremap <Leader>a :tabprev<CR>
-nnoremap <Leader>d :tabnext<CR>
-nnoremap <Leader>q :tabmove-1<CR>
-nnoremap <Leader>e :tabmove+1<CR>
-
-
-" Window navigation
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-
 " Set Vim to show 256 kinds of colors
 set t_Co=256			
 " Default backspace behaviour

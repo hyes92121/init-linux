@@ -26,9 +26,14 @@ fi
 # move files to home directory
 mv init-linux/.bash* .
 mv init-linux/.vim* .
+cd .vim/bundle/
+git clone https://github.com/nanotech/jellybeans.vim
+git clone https://github.com/vim-airline/vim-airline
+cd ../..
 rm -rf init-linux
 
-source .bashrc
+
+. .bashrc
 echo Finish setting up bash and vim env. 
 echo Start downloading miniconda3 
 if [ -z $(which wget) ]; then 

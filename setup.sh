@@ -24,9 +24,9 @@ if [ "$need_backup" = false]; then
 fi
 
 # move files to home directory
-mv ez-bash/.bash* .
-mv ez-bash/.vim* .
-rm -rf ez-bash
+mv init-linux/.bash* .
+mv init-linux/.vim* .
+rm -rf init-linux
 
 source .bashrc
 echo Finish setting up bash and vim env. 

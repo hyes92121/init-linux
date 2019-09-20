@@ -19,7 +19,7 @@ if [ -d .vim ]; then
     need_backup=true
 fi
 # Delete environment backup if not needed
-if [ "$need_backup" = false]; then
+if [ "$need_backup" = false ]; then
     rm -rf .env_backup
 fi
 
@@ -34,7 +34,7 @@ cd ../..
 rm -rf init-linux
 
 
-. .bashrc
+source ~/.bashrc
 echo Finish setting up bash and vim env. 
 echo Start downloading miniconda3 
 if [ -z $(which wget) ]; then 

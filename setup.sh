@@ -1,4 +1,4 @@
-cd .. 
+cd ~ 
 
 # Backup original user files
 need_backup=false
@@ -30,7 +30,7 @@ cd .vim/
 mkdir bundle; cd bundle
 git clone https://github.com/nanotech/jellybeans.vim
 git clone https://github.com/vim-airline/vim-airline
-cd ../..
+cd ~
 rm -rf init-linux
 
 

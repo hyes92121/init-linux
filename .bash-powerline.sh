@@ -9,32 +9,36 @@ __powerline() {
     readonly COLOR_CWD='\[\033[0;36m\]' # cyan
     readonly COLOR_GIT='\[\033[0;33m\]' # yellow
     readonly COLOR_SUCCESS='\[\033[0;32m\]' # green
-    readonly COLOR_FAILURE='\[\033[0;31m\]' # red
+    readonly COLOR_FAILURE='\[\033[0;31m\]' # red 
+    
     # add new colors 
-    readonly COLOR_TIME='\[\033[0;94m\]' # red
+    readonly COLOR_TIME='\[\033[0;91m\]' # red
     readonly COLOR_USER='\[\033[4;35m\]' # purple
-    readonly COLOR_HOST='\[\033[0;35m\]' # blah
+    readonly COLOR_HOST='\[\033[0;35m\]' # purple
 
+    # Symbols for git. Some symbols need powerline fonts 
+    # to be showed correctly
     readonly SYMBOL_GIT_BRANCH='⑂'
     readonly SYMBOL_GIT_MODIFIED='*'
     readonly SYMBOL_GIT_PUSH='↑'
     readonly SYMBOL_GIT_PULL='↓'
 
+    # Show different command prompt based on user kernel
+    # Darwin -> MacOS
+    # Linux  -> Ubuntu, Fedora, CentOS etc. 
+    # *      -> Others (e.g. SunOS, FreeBSD)
     if [[ -z "$PS_SYMBOL" ]]; then
       case "$(uname)" in
-          #Darwin)   PS_SYMBOL='';;
-          #Darwin)   PS_SYMBOL='⎇ ';;
-          Darwin)   PS_SYMBOL='⤕';;
-          #Darwin)   PS_SYMBOL='👉👌💦💦';;
-          Linux)    PS_SYMBOL='$';;
+          Darwin)   PS_SYMBOL='';;
+          Linux)    PS_SYMBOL='$';; 
           *)        PS_SYMBOL='%';;
       esac
     fi
 
+    # Prompt if the previous command returns an error code 
     if [[ -z "$PS_ERROR_SYMBOL" ]]; then
       case "$(uname)" in
-          #Darwin)   PS_SYMBOL='';;
-          Darwin)   PS_ERROR_SYMBOL='⚡︎';;
+          Darwin)   PS_ERROR_SYMBOL='';;
           Linux)    PS_ERROR_SYMBOL='$';;
           *)        PS_ERROR_SYMBOL='%';;
       esac
@@ -84,7 +88,6 @@ __powerline() {
             local symbol="$COLOR_FAILURE $PS_ERROR_SYMBOL $RESET"
         fi
 
-        #local cwd="$COLOR_CWD$PWD$RESET"
         local cwd="$COLOR_CWD\w$RESET"
         # Bash by default expands the content of PS1 unless promptvars is disabled.
         # We must use another layer of reference to prevent expanding any user
@@ -99,12 +102,12 @@ __powerline() {
             local git="$COLOR_GIT$(__git_info)$RESET"
         fi
         
-
-        # Caleb's Custamization here!!
+        # Emulate new line
         PS_LINE=`printf .. '- %.0s' {1..200}`
         PS_FILL=${PS_LINE:0:$COLUMNS}
         PS_INFO="$COLOR_USER\u$RESET@$COLOR_HOST\h$RESET"
         
+        # Currently only supports miniconda environments
         if [ ! -z "$CONDA_DEFAULT_ENV" ]; then
             virenv="(${CONDA_DEFAULT_ENV##*/})"
             PS_INFO="$virenv$PS_INFO"
@@ -119,8 +122,7 @@ __powerline() {
             PS_INFO=$PS_INFO
         fi
 
-        RED="\[\033[0;91m\]"
-        PS_TIME="\[\033[\$((COLUMNS-10))G\] $RED[\t]"
+        PS_TIME="\[\033[\$((COLUMNS-10))G\] $COLOR_TIME[\t]"
         PS1="${PS_FILL}\[\033[0G\]$PS_INFO:$cwd$git$PS_TIME\n${RESET}$symbol"
 
     }

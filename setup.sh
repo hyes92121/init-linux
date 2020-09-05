@@ -1,7 +1,7 @@
 cd ~ 
 
 # Backup original user files
-need_backup=false
+need_backup=true
 mkdir .env_backup
 if [ -f .bashrc ]; then
     echo .bashrc exists. Moving to backup...
@@ -20,6 +20,7 @@ if [ -d .vim ]; then
 fi
 # Delete environment backup if not needed
 if [ "$need_backup" = false ]; then
+    echo Deleting original user files
     rm -rf .env_backup
 fi
 
@@ -34,12 +35,20 @@ cd ~
 rm -rf init-linux
 
 
+
+case "$(uname)" in
+    Darwin)   echo "source ~/.bashrc" > bash_profile;; # macOS runs bash_profile on shell startup
+esac
+
 source ~/.bashrc
 echo Finish setting up bash and vim env. 
-echo Start downloading miniconda3 
+echo Start downloading miniconda3...
 if [ -z $(which wget) ]; then 
     echo wget not found. Installing wget...
-    sudo apt install wget
+    case "$(uname)" in
+        Darwin)   brew install wget;;
+        Linux)    sudo apt install wget;;
+    esac
 fi 
 echo Done!
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh

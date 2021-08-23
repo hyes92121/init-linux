@@ -25,14 +25,14 @@ if [ "$need_backup" = false ]; then
 fi
 
 # move files to home directory
-mv init-env/.bash* .
-mv init-env/.vim* .
+mv init-linux/.bash* .
+mv init-linux/.vim* .
 cd .vim/
 mkdir bundle; cd bundle
 git clone https://github.com/nanotech/jellybeans.vim
 git clone https://github.com/vim-airline/vim-airline
 cd ~
-rm -rf init-env
+rm -rf init-linux 
 
 
 
